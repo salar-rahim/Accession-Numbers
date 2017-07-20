@@ -1,6 +1,7 @@
 package com.ebi.accessionNumber;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -17,6 +18,10 @@ public class RangeBuilder {
     
     private static boolean isGreaterByOne(int x, int y){
         return (x+1 == y)? true : false;
+    }
+    static List<String> getOrderedNumberRanges(){
+        Collections.sort(accNumbersList);
+        return accNumbersList;
     }
     
     static void buildNumberRanges(){
