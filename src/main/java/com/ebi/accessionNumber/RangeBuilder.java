@@ -22,5 +22,9 @@ public class RangeBuilder {
         AccessionNumbers.alphanumeric.entrySet().parallelStream()
                                                 .forEach(RangeBuilder::buildNumberRanges);
     }
+    
+     private static String createRangeString(String letter, String rangeStart, String rangeEnd){
+        return letter.concat(rangeStart).concat("-").concat(letter).concat(rangeEnd);
+    }
 
 }
