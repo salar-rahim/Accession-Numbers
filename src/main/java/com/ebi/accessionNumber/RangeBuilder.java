@@ -18,6 +18,9 @@ public class RangeBuilder {
         return (x+1 == y)? true : false;
     }
     
-    
+    static void buildNumberRanges(){
+        AccessionNumbers.alphanumeric.entrySet().parallelStream()
+                                                .forEach(RangeBuilder::buildNumberRanges);
+    }
 
 }
