@@ -1,6 +1,7 @@
 package com.ebi.accessionNumber;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,9 +26,10 @@ public class AccessionNumbers {
             numbers = new ArrayList<>();
         }
         numbers.add(value);
+        Collections.sort(numbers);
         alphanumeric.put(key, numbers);
     }
-    
+  
     /**
      * 
      * @param accNumber the original accession number
