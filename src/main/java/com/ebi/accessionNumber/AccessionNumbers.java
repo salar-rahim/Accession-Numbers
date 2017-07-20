@@ -29,6 +29,10 @@ public class AccessionNumbers {
         Collections.sort(numbers);
         alphanumeric.put(key, numbers);
     }
+     static void buildNumberRanges(){
+        AccessionNumbers.alphanumeric.entrySet().parallelStream()
+                                                .forEach(RangeBuilder::buildNumberRanges);
+    }
   
     /**
      * 
