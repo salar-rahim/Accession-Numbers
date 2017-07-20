@@ -26,5 +26,23 @@ public class AccessionNumbers {
         numbers.add(value);
         alphanumeric.put(key, numbers);
     }
+    
+    /**
+     * 
+     * @param accNumber the original accession number
+     * @return a series of digits found in the accNumber
+     */
+    public String extractDigits(String accNumber){
+        return accNumber.replaceAll("\\D+","");
+    }
+    
+    /**
+     * 
+     * @param accNumber the original accession number
+     * @return a series of letters found in the accNumber
+     */
+    public String extractLetters(String accNumber){
+        return accNumber.replaceAll("[^A-Za-z]+","");
+    }
 
 }
