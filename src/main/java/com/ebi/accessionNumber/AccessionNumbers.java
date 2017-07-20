@@ -10,15 +10,16 @@ import java.util.Map;
  * @author Salar
  */
 public class AccessionNumbers {
-    private static Map<String,List<String>> alphanumeric = new HashMap<>();
+     static Map<String,List<String>> alphanumeric = new HashMap<>();
     
     /**
-     * This method adds a key,value pair to the map, if the key is already added
-     * in the map the value will be added to list of values of that key
-     * @param key is a series of letters extracted from the accession number
-     * @param value is a series of digits in String type extracted from the accession number
+     * This method adds a key,value pair to the map, if the key exists
+     * the value will be added to list of values of that key
+     * @param accNumber the original accession number
      */
-    public static void add(String key, String value){
+    public static void add(String accNumber){
+        String key = extractLetters(accNumber);
+        String value = extractDigits(accNumber);
         List<String> numbers = alphanumeric.get(key);
         if (numbers == null) {
             numbers = new ArrayList<>();
@@ -32,7 +33,7 @@ public class AccessionNumbers {
      * @param accNumber the original accession number
      * @return a series of digits found in the accNumber
      */
-    public String extractDigits(String accNumber){
+    public static String extractDigits(String accNumber){
         return accNumber.replaceAll("\\D+","");
     }
     
@@ -41,8 +42,10 @@ public class AccessionNumbers {
      * @param accNumber the original accession number
      * @return a series of letters found in the accNumber
      */
-    public String extractLetters(String accNumber){
+    public static String extractLetters(String accNumber){
         return accNumber.replaceAll("[^A-Za-z]+","");
     }
+    
+    
 
 }
