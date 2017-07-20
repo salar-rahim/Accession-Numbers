@@ -31,10 +31,9 @@ public class AccessionNumbersTest extends TestCase {
      * Test of add method, of class AccessionNumbers.
      */
     public void testAdd() {
-        System.out.println("add");
-        String key = "";
-        String value = "";
-        AccessionNumbers.add(key, value);
+        System.out.println("test add method");
+        String accNumber = "AAA00098";
+        AccessionNumbers.add(accNumber);
         
     }
     
