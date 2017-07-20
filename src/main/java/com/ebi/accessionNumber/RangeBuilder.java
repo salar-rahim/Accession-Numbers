@@ -10,7 +10,7 @@ import java.util.Map.Entry;
  * @author Salar
  */
 public class RangeBuilder {
-    static List<String> accNumbersList = new ArrayList<>();
+    private static List<String> accNumbersList = new ArrayList<>();
     
     private static boolean compareLength(String str1, String str2){
         return (str1.length()==str2.length())? true:false;
@@ -24,12 +24,7 @@ public class RangeBuilder {
         return accNumbersList;
     }
     
-    static void buildNumberRanges(){
-        AccessionNumbers.alphanumeric.entrySet().parallelStream()
-                                                .forEach(RangeBuilder::buildNumberRanges);
-    }
-    
-    private static void buildNumberRanges(Entry entry){
+     static void buildNumberRanges(Entry entry){
         String key = (String) entry.getKey();
         List<String> values = (ArrayList<String>) entry.getValue();
         if (values.size() > 1) {
