@@ -1,42 +1,33 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ebi.accessionNumber;
 
-import junit.framework.TestCase;
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertNotEquals;
 import org.junit.Test;
 
 /**
  *
  * @author Salar
  */
-public class AccessionNumbersTest extends TestCase {
+public class AccessionNumbersTest {
     
-    public AccessionNumbersTest(String testName) {
-        super(testName);
-    }
-    
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
-    }
-    
-    @Override
-    protected void tearDown() throws Exception {
-        super.tearDown();
-    }
-
+   
     /**
      * Test of add method, of class AccessionNumbers.
      */
     @Test
-    public void testAdd() {
-        System.out.println("test add method");
+    public void testAddKey() {
         String accNumber = "AAA00098";
         AccessionNumbers.add(accNumber);
-        
+        boolean result = AccessionNumbers.alphanumeric.containsKey("AAA");
+        assertTrue(result);
+    }
+    @Test
+    public void testAddValue() {
+        String accNumber = "AAA00098";
+        AccessionNumbers.add(accNumber);
+        boolean result = AccessionNumbers.alphanumeric.get("AAA").contains("00098");
+        assertTrue(result);
     }
     @Test
     public void testExtractDigits(){
@@ -45,6 +36,14 @@ public class AccessionNumbersTest extends TestCase {
         String expected = AccessionNumbers.extractDigits(accessionNumber);
         assertEquals(expected, actual);
     }
+    @Test
+    public void testInvalidExtractedDigits(){
+        String accessionNumber = "ABC12345";
+        String actual = "123";
+        String expected = AccessionNumbers.extractDigits(accessionNumber);
+        assertNotEquals(expected, actual);
+    }
+    
     
     @Test
     public void testExtractLetters(){
@@ -52,6 +51,13 @@ public class AccessionNumbersTest extends TestCase {
         String actual = "ABC";
         String expected = AccessionNumbers.extractLetters(accessionNumber);
         assertEquals(expected, actual);
+    }
+    @Test
+    public void testInvalidExtractedLetters(){
+        String accessionNumber = "ABC12345";
+        String actual = "AB";
+        String expected = AccessionNumbers.extractLetters(accessionNumber);
+        assertNotEquals(expected, actual);
     }
     
 }
