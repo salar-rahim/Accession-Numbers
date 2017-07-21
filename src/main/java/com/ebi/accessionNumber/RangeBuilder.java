@@ -18,7 +18,7 @@ public class RangeBuilder {
      * @param str2 extracted digits from accession number
      * @return true if both strings have the same length otherwise false.
      */
-    private static boolean compareLength(String str1, String str2){
+     static boolean compareLength(String str1, String str2){
         return (str1.length()==str2.length())? true:false;
     }
     
@@ -28,7 +28,7 @@ public class RangeBuilder {
      * @param y the extracted digits from an accession number in integer format
      * @return true if second param is incrementing of the first param by 1
      */
-    private static boolean isGreaterByOne(int x, int y){
+     static boolean isGreaterByOne(int x, int y){
         return (x+1 == y)? true : false;
     }
     
@@ -37,7 +37,6 @@ public class RangeBuilder {
      * @return a list of the accession numbers with possible ranges
      */
     static List<String> getOrderedNumberRanges(){
-//        Collections.sort(accNumbersList);
         return accNumbersList;
     }
     
@@ -45,7 +44,7 @@ public class RangeBuilder {
      * This method works on a single entryset from a hasmap.
      * the entryset has key,value pairs
      * key is the alphabetical letters found in the accession numbers
-     * keys are a list of values which belong to a single key
+     * Values are a list of numerical digits which belong to a single key
      * if a key has only one value its directly stored in the final list of numbers
      * if a key has multiple values it will go through two phases to find a possible range
      * phase-1: checks two adjacent values if they have different length which means they're not in a possible range
@@ -86,7 +85,7 @@ public class RangeBuilder {
      * @param index the starting point to which the search must be made from.
      * @return the last value of the possible number range
      */
-    private static String findRangeEnd(List<String> numbersList, int index){
+     static String findRangeEnd(List<String> numbersList, int index){
         String rangeStart="",rangeEnd;
         for (int i = index+1; i < numbersList.size()-1; i++) {
             rangeStart = numbersList.get(i);
@@ -105,7 +104,7 @@ public class RangeBuilder {
      * @param rangeEnd the end value of a possible number range
      * @return a  string representation of the number ranges
      */
-     private static String createRangeString(String letter, String rangeStart, String rangeEnd){
+     static String createRangeString(String letter, String rangeStart, String rangeEnd){
         return letter.concat(rangeStart).concat("-").concat(letter).concat(rangeEnd);
     }
 
