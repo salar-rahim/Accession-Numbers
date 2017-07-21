@@ -6,6 +6,7 @@
 package com.ebi.accessionNumber;
 
 import junit.framework.TestCase;
+import org.junit.Test;
 
 /**
  *
@@ -30,11 +31,27 @@ public class AccessionNumbersTest extends TestCase {
     /**
      * Test of add method, of class AccessionNumbers.
      */
+    @Test
     public void testAdd() {
         System.out.println("test add method");
         String accNumber = "AAA00098";
         AccessionNumbers.add(accNumber);
         
+    }
+    @Test
+    public void testExtractDigits(){
+        String accessionNumber = "ABC12345";
+        String actual = "12345";
+        String expected = AccessionNumbers.extractDigits(accessionNumber);
+        assertEquals(expected, actual);
+    }
+    
+    @Test
+    public void testExtractLetters(){
+        String accessionNumber = "ABC12345";
+        String actual = "ABC";
+        String expected = AccessionNumbers.extractLetters(accessionNumber);
+        assertEquals(expected, actual);
     }
     
 }
