@@ -3,7 +3,7 @@ package com.ebi.accessionNumber;
 import java.util.Arrays;
 
 /**
- * Hello world!
+ * @author Salar (salar.rahim@gmail.com)
  *
  */
 public class App 
