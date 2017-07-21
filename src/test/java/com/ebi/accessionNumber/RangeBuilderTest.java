@@ -5,13 +5,13 @@
  */
 package com.ebi.accessionNumber;
 
+import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertFalse;
+import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertNotEquals;
+import org.junit.Test;
 
 /**
  *
@@ -19,47 +19,59 @@ import org.junit.Ignore;
  */
 public class RangeBuilderTest {
     
-    public RangeBuilderTest() {
+    
+    @Test
+    public void testEqualLengthStrings(){
+        String str1 = "ABD8765";
+        String str2 = "TRE9812";
+        boolean expected = RangeBuilder.compareLength(str1, str2);
+        assertTrue("Equal length strings test fail",expected);
+    }
+    @Test
+    public void testNonEqualLengthStrings(){
+        String str1 = "ABD87";
+        String str2 = "TRE9812";
+        boolean expected = RangeBuilder.compareLength(str1, str2);
+        assertFalse("Non Equal length strings test pass",expected);
     }
     
-    @BeforeClass
-    public static void setUpClass() {
+    @Test
+    public void testGreaterByOne(){
+        boolean expected = RangeBuilder.isGreaterByOne(5, 6);
+        assertTrue("second number greater than first number by one_Test fail",expected);
+    }
+    @Test
+    public void testNotGreaterByOne(){
+        boolean expected = RangeBuilder.isGreaterByOne(3, 6);
+        assertFalse("second number greater than first number by more than one_Test pass",expected);
     }
     
-    @AfterClass
-    public static void tearDownClass() {
+    @Test
+    public void testFindRangeEnd(){
+        List<String> numbers = Arrays.asList("00012","00013","00014","12406");
+        String expected = RangeBuilder.findRangeEnd(numbers, 0);
+        String actual = "00014";
+        assertEquals(expected,actual);
+    }
+    @Test
+    public void testInvalidRangeEnd(){
+        List<String> numbers = Arrays.asList("00012","00013","00014","12406");
+        String expected = RangeBuilder.findRangeEnd(numbers, 0);
+        String actual = "12406";
+        assertNotEquals(expected,actual);
     }
     
-    @Before
-    public void setUp() {
+    @Test
+    public void testCreateValidRangeString(){
+        String actual = "AB1234-AB1236";
+        String expected = RangeBuilder.createRangeString("AB", "1234", "1236");
+        assertEquals(expected, actual);
     }
-    
-    @After
-    public void tearDown() {
-    }
-
-    /**
-     * Test of getOrderedNumberRanges method, of class RangeBuilder.
-     */
-    @Ignore
-    public void testGetOrderedNumberRanges() {
-        System.out.println("getOrderedNumberRanges");
-        List<String> expResult = null;
-        List<String> result = RangeBuilder.getOrderedNumberRanges();
-//        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of buildNumberRanges method, of class RangeBuilder.
-     */
-    @Ignore
-    public void testBuildNumberRanges() {
-        System.out.println("buildNumberRanges");
-        Map.Entry entry = null;
-        RangeBuilder.buildNumberRanges(entry);
-        // TODO review the generated test code and remove the default call to fail.
+    @Test
+    public void testCreateInvalidRangeString(){
+        String actual = "AB1234-AB1234";
+        String expected = RangeBuilder.createRangeString("AB", "1234", "1236");
+        assertNotEquals(expected, actual);
     }
     
 }
